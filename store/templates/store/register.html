@@ -1,0 +1,14 @@
+{% extends 'store/main.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="form-container">
+        <form method="POST" action="{% url 'register' %}">
+            {% csrf_token %}
+            <h2>Register</h2>
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+    </div>
+{% endblock %}
+

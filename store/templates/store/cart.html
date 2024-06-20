@@ -1,0 +1,58 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+    <div class="row justify-content-center" style="min-width: 550px">
+        <div class="col-12">
+            <div class="container-fluid">
+
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-12 p-2">
+                        <a class="btn btn-outline-dark" href="{% url 'store' %}">&#x2190; Back To Shop</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <br>
+            <div class="box-element">
+                <div class="cart-row">
+                    <div style="flex:2"></div>
+                    <div style="flex:1"><strong>Item</strong></div>
+                    <div style="flex:1"><strong>Price</strong></div>
+                    <div style="flex:1"><strong>Quantity</strong></div>
+                    <div style="flex:1"><strong>Total</strong></div>
+                </div>
+                {% for item in items %}
+                    <div class="cart-row">
+                        <div style="flex:2"><img class="row-image" src="{{ item.product.imageURL }}"></div>
+                        <div style="flex:1"><p>{{ item.product.name }}</p></div>
+                        <div style="flex:1"><p>${{ item.product.price|floatformat:2 }}</p></div>
+                        <div style="flex:1; transform: translateX(20px)">
+                            <p class="quantity" style="transform: translateY(-8px)">{{ item.quantity }}</p>
+                            <div class="quantity">
+                                <img data-product="{{ item.product.id }}" data-action="add"
+                                     class="chg-quantity update-cart" src="{% static  'images/arrow-up.png' %}">
+
+                                <img data-product="{{ item.product.id }}" data-action="remove"
+                                     class="chg-quantity update-cart" src="{% static  'images/arrow-down.png' %}">
+                            </div>
+                        </div>
+                        <div style="flex:1"><p>${{ item.get_total|floatformat:2 }}</p></div>
+                    </div>
+                {% endfor %}
+                <div class="row justify-content-center align-items-center p-2">
+                    <div class="col-12 col-sm-4 text-start">
+                        <span style="font-size: large">Items: <strong>{{ order.get_cart_items }}</strong></span>
+                    </div>
+                    <div class="col-12 col-sm-4 text-center">
+                        <span style="font-size: large">Total:<strong> ${{ order.get_cart_total|floatformat:2 }}</strong></span>
+                    </div>
+                    <div class="col-12 col-sm-4 text-end">
+                        <a style="float:right; margin:5px;" class="btn btn-success"
+                           href="{% url 'checkout' %}">Checkout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

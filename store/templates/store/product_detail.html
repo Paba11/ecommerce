@@ -1,0 +1,35 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+    <div class="container-fluid p-1 p-md-2 p-lg-3">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-12 text-center mt-2">
+                <h1 style="font-weight: bold">{{ product.name }}</h1>
+            </div>
+
+            <div class="col-12 col-md-7 mt-4 text-center">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="img-fluid" style="max-width: 500px;">
+            </div>
+
+            <div class="col-12 col-md-5 box-element mt-4">
+                <p style="color: white">{{ product.description }}</p>
+                <p>
+                    {% if product.digital %}
+                        <span style="font-size: small; color: lightgray">Version: {{ product.version }}</span>
+                    {% else %}
+                        <span style="font-size: small; color: lightgray">Color: {{ product.color }}</span>
+                    {% endif %}
+                </p>
+                <p style="color: white">Price: {{ product.price }}€</p>
+                <button class="btn btn-outline-success update-cart mt-4" data-product="{{ product.id }}" data-action="add">
+                    Add to
+                    Cart
+                </button>
+            </div>
+
+        </div>
+
+
+    </div>
+
+{% endblock content %}

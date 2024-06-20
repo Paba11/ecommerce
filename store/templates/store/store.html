@@ -1,0 +1,65 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="row justify-content-center">
+        <div class="col-12 mt-2 mb-2 text-center form-group">
+            <form method="GET" action="{% url 'store' %}" class="search-form">
+                <label for="searchInput" style="font-size: large; font-weight: bold">Search Product</label><br>
+                <input type="text" name="search_query" placeholder="Search..." class="form-control"
+                       id="searchInput">
+                <div class="mt-2 mb-4">
+                    <button type="submit" class="btn btn-outline-dark me-4">Search</button>
+                    <a href="{% url 'store' %}" class="btn btn-outline-dark ms-4">Refresh</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row justify-content-center mb-4">
+        {% for product in products %}
+            <div class="col-12 col-md-6 col-lg-4 col-xxl-3 mt-3" style="max-width: 500px;">
+                <img class="thumbnail" alt="" src="{{ product.image.url }}" style="object-fit: contain;">
+                <div class="container-fluid box-element product">
+                    <div class="row p-2 justify-content-center">
+                        <h6><strong style="font-size: x-large">{{ product.name }}</strong></h6>
+                    </div>
+
+                    <div class="row p-2 justify-content-center">
+                        <span style="font-size: medium; color: lightgray">{{ product.info }}</span>
+                    </div>
+
+                    <div class="row p-2 ">
+                        {% if product.digital %}
+                        <div class="col-6">
+                            <span style="font-size: small; color: lightgray">Version: {{ product.version }}</span>
+                        </div>
+                        {% else %}
+                        <div class="col-6">
+                            <span style="font-size: small; color: lightgray">Color: {{ product.color }}</span>
+                        </div>
+                        {% endif %}
+                        <div class="col-6">
+                            <h4 style="font-size: medium; display: inline-block; float: right">
+                                <strong>{{ product.price }}€</strong></h4>
+                        </div>
+                    </div>
+
+                    <div class="row p-2">
+                        <div class="col-6 text-center">
+                            <button data-product="{{ product.id }}" data-action="add"
+                                    class="btn btn-outline-success add-btn update-cart">Add to Cart
+                            </button>
+                        </div>
+                        <div class="col-6 text-center">
+                            <a href="{% url 'product_detail' product.id %}" class="btn btn-outline-light">Details</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+{% endblock content %}
