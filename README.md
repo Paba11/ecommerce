@@ -9,6 +9,10 @@ Infatti grazie alla presenza di cookies il browser terrà traccia di tutte le az
 
 È possibile registrarsi al sito compilando un form. Nel caso in cui un utente abbia effettuato acquisti prima di registrarsi, questi verranno direttamente collegati al nuovo profilo creato (nel caso in cui la mail del profilo corrisponda con la stessa dei precedenti acquisti).
 
+Distingue due tipologie di prodotto:
+- Digitale --> non richiede indirizzo di spedizione.
+- Fisico --> Richiede indirizzo di spedizione.
+
 Le principali funzionalità dell'eCommerce sono:
 
 NAVBAR:
@@ -30,4 +34,8 @@ PAGINA CARRELLO:
 - Tramite il tasto Checkout naviga alla pagina di pagamento.
 
 PAGINA CHECKOUT:
-- 
+- Iserimento nome ed email (se l'utente non è loggato).
+- Se si acquista un prodotto fisico inserimento dei dati di spedizione.
+- Tramite il pulsante Make Payment l'ordine viene effettuato.
+
+Per consentire il funzionamento corretto del sito si deve abilitare l'utilizzo dei cookies
