@@ -147,6 +147,7 @@ def logoutUser(request):
     return redirect('login')
 
 
+@csrf_exempt
 def registerPage(request):
     if request.user.is_authenticated:
         return redirect('store')
