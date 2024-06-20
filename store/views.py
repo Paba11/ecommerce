@@ -121,7 +121,7 @@ def productDetail(request, product_id):
     context = {'product': product, 'cartItems': cartItems}
     return render(request, 'store/product_detail.html', context)
 
-
+@csrf_exempt
 def loginPage(request):
     if request.user.is_authenticated:
         return redirect('store')
