@@ -77,6 +77,7 @@ def updateItem(request):
     return JsonResponse('Item was added', safe=False)
 
 
+@csrf_exempt
 def processOrder(request):
     transaction_id = datetime.datetime.now().timestamp()
     data = json.loads(request.body)
@@ -112,7 +113,6 @@ def processOrder(request):
     return JsonResponse('Payment submitted..', safe=False)
 
 
-@csrf_exempt
 def productDetail(request, product_id):
     data = cartData(request)
     cartItems = data['cartItems']
