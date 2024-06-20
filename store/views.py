@@ -71,7 +71,7 @@ def updateItem(request):
     if orderItem.quantity <= 0:
         orderItem.delete()
 
-    print("QUI RELOAD?")
+
     return JsonResponse('Item was added', safe=False)
 
 
