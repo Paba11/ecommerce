@@ -77,7 +77,6 @@ def updateItem(request):
     return JsonResponse('Item was added', safe=False)
 
 
-@csrf_exempt
 def processOrder(request):
     transaction_id = datetime.datetime.now().timestamp()
     data = json.loads(request.body)
@@ -121,7 +120,7 @@ def productDetail(request, product_id):
     context = {'product': product, 'cartItems': cartItems}
     return render(request, 'store/product_detail.html', context)
 
-@csrf_exempt
+
 def loginPage(request):
     if request.user.is_authenticated:
         return redirect('store')
@@ -147,7 +146,6 @@ def logoutUser(request):
     return redirect('login')
 
 
-@csrf_exempt
 def registerPage(request):
     if request.user.is_authenticated:
         return redirect('store')
