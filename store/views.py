@@ -2,6 +2,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 import json
 import datetime
+
+from django.views.decorators.csrf import csrf_exempt
+
 from .models import *
 from .utils import cookieCart, cartData, guestOrder
 from .form import ExtendedUserCreationForm, ProductSearchForm
@@ -71,7 +74,6 @@ def updateItem(request):
     if orderItem.quantity <= 0:
         orderItem.delete()
 
-
     return JsonResponse('Item was added', safe=False)
 
 
@@ -110,6 +112,7 @@ def processOrder(request):
     return JsonResponse('Payment submitted..', safe=False)
 
 
+@csrf_exempt
 def productDetail(request, product_id):
     data = cartData(request)
     cartItems = data['cartItems']
