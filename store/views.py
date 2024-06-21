@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 import json
@@ -180,3 +181,11 @@ def registerPage(request):
 
         context = {'form': form}
         return render(request, 'store/register.html', context)
+
+
+@login_required
+def orderHistory(request):
+    customer = request.user.customer
+    orders = Order.objects.filter(customer=customer, complete=True).order_by('-date_ordered')
+    context = {'orders': orders}
+    return render(request, 'store/order_history.html', context)
