@@ -28,6 +28,8 @@ SECRET_KEY = 'django-insecure--mv$)^6j90($&+z=k&w2g4yd$*)pm=q6q@(yecqishey-*eqzg
 DEBUG = 'RENDER' not in os.environ
 
 ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://web-production-e0913.up.railway.app']
+
 
 RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
