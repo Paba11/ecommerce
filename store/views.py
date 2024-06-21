@@ -122,7 +122,6 @@ def productDetail(request, product_id):
     return render(request, 'store/product_detail.html', context)
 
 
-@csrf_exempt
 def loginPage(request):
     if request.user.is_authenticated:
         return redirect('store')
@@ -148,7 +147,6 @@ def logoutUser(request):
     return redirect('login')
 
 
-@csrf_exempt
 def registerPage(request):
     if request.user.is_authenticated:
         return redirect('store')
