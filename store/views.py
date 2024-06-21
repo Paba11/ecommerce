@@ -92,8 +92,8 @@ def processOrder(request):
     total = float(data['form']['total'])
     order.transaction_id = transaction_id
 
-    if total == order.get_cart_total:
-        order.complete = True
+    #if total == order.get_cart_total:
+    order.complete = True
     order.save()
 
     orderItems = order.orderitem_set.all()
@@ -182,9 +182,23 @@ def registerPage(request):
         return render(request, 'store/register.html', context)
 
 
+import logging
+
+logger = logging.getLogger(__name__)
+
+
 @login_required
 def orderHistory(request):
-    customer = request.user.customer
-    orders = Order.objects.filter(customer=customer, complete=True).order_by('-date_ordered')
-    context = {'orders': orders}
+    try:
+        customer = request.user.customer
+    except Customer.DoesNotExist:
+        customer = None
+
+    if customer:
+        orders = Order.objects.filter(customer=customer).order_by('-date_ordered')
+
+    else:
+        orders = []
+
+    context = {'orders': orders, 'customer': customer}
     return render(request, 'store/order_history.html', context)

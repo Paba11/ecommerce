@@ -1,19 +1,14 @@
 {% extends 'store/main.html' %}
-
+{% load static %}
 {% block content %}
 <h2>Order History</h2>
+    <h3>CUSTOMER: {{ customer }}</h3>
 <div class="order-list">
     {% for order in orders %}
     <div class="order">
         <h3>Order ID: {{ order.id }}</h3>
         <p>Date Ordered: {{ order.date_ordered }}</p>
-        <p>Total: ${{ order.get_cart_total }}</p>
-        <p>Items:</p>
-        <ul>
-            {% for item in order.orderitem_set.all %}
-            <li>{{ item.product.name }} ({{ item.quantity }}) - ${{ item.get_total }}</li>
-            {% endfor %}
-        </ul>
+        <p>TransactionID: ${{ order.transaction_id }}</p>
     </div>
     <hr>
     {% endfor %}
